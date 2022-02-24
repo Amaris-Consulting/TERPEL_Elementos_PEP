@@ -1,0 +1,347 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Notificacion_Bizagi" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_PuntoFinal" Type="InArgument(x:String)" />
+    <x:Property Name="in_Metodo" Type="InArgument(x:String)" />
+    <x:Property Name="in_NombreContrato" Type="InArgument(x:String)" />
+    <x:Property Name="in_radNumber" Type="InArgument(x:String)" />
+    <x:Property Name="in_domain" Type="InArgument(x:String)" />
+    <x:Property Name="in_userName" Type="InArgument(x:String)" />
+    <x:Property Name="in_taskName" Type="InArgument(x:String)" />
+    <x:Property Name="in_Codigo" Type="InArgument(x:String)" />
+    <x:Property Name="in_Descripcion" Type="InArgument(x:String)" />
+    <x:Property Name="out_ResultadoBizagi" Type="OutArgument(x:Boolean)" />
+    <x:Property Name="out_Resultado" Type="OutArgument(x:String)" />
+    <x:Property Name="in_ElementoPEPOI" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Transaction item to be processed." Name="in_TransactionItem" Type="InArgument(ui:QueueItem)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>951,2344</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>SAP_Login_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="37">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>UiPath.Core.Activities.SAP</x:String>
+      <x:String>UiPath.Mail</x:String>
+      <x:String>UiPath.Mail.Outlook.Activities</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Web.Activities</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="62">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Notificacion_Bizagi" sap:VirtualizedContainerService.HintSize="961,2279" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Start Args In" sap:VirtualizedContainerService.HintSize="919,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[String.Format(&quot;--&gt;Inicio-Flujo : Notificacion_Bizagi in_Codigo: '{0}', in_Descripcion: '{1}', in_domain: '{2}', in_Metodo: '{3}', in_NombreContrato: '{4}', in_PuntoFinal: '{5}', in_radNumber: '{6}', in_taskName: '{7}', in_userName: '{8}'&quot;,in_Codigo,in_Descripcion,in_domain,in_Metodo,in_NombreContrato,in_PuntoFinal,in_radNumber,in_taskName,in_userName)]" />
+    <Sequence DisplayName="Validar Argumentos de Entrada" sap:VirtualizedContainerService.HintSize="919,871" sap2010:WorkflowViewState.IdRef="Sequence_20">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If Condition="[String.IsNullOrEmpty(in_Codigo)]" DisplayName="in_Codigo" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="If_10">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <If.Then>
+          <Throw DisplayName="Check-in_Codigo" Exception="[new SystemException(&quot;El argumento in_Codigo se encuentra vacío&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_1" />
+        </If.Then>
+      </If>
+      <If Condition="[String.IsNullOrEmpty(in_Descripcion)]" DisplayName="in_Descripcion" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="If_11">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <If.Then>
+          <Throw DisplayName="Check-in_Descripcion" Exception="[new SystemException(&quot;El argumento in_Descripcion se encuentra vacío&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_2" />
+        </If.Then>
+      </If>
+      <If Condition="[String.IsNullOrEmpty(in_domain)]" DisplayName="in_domain" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="If_12">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <If.Then>
+          <Throw DisplayName="Check-in_domain" Exception="[new SystemException(&quot;El argumento in_domain se encuentra vacío&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_3" />
+        </If.Then>
+      </If>
+      <If Condition="[String.IsNullOrEmpty(in_Metodo)]" DisplayName="in_Metodo" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="If_13">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <If.Then>
+          <Throw DisplayName="Check-in_Metodo" Exception="[new SystemException(&quot;El argumento in_Metodo se encuentra vacío&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_4" />
+        </If.Then>
+      </If>
+      <If Condition="[String.IsNullOrEmpty(in_NombreContrato)]" DisplayName="in_NombreContrato" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="If_14">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <If.Then>
+          <Throw DisplayName="Check-in_NombreContrato" Exception="[new SystemException(&quot;El argumento in_NombreContrato se encuentra vacío&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_5" />
+        </If.Then>
+      </If>
+      <If Condition="[String.IsNullOrEmpty(in_PuntoFinal)]" DisplayName="in_PuntoFinal" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="If_16">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <If.Then>
+          <Throw DisplayName="Check-in_PuntoFinal" Exception="[new SystemException(&quot;El argumento in_PuntoFinal se encuentra vacío&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_7" />
+        </If.Then>
+      </If>
+      <If Condition="[String.IsNullOrEmpty(in_radNumber)]" DisplayName="in_radNumber" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="If_17">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <If.Then>
+          <Throw DisplayName="Check-in_radNumber" Exception="[new SystemException(&quot;El argumento in_radNumber se encuentra vacío&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_8" />
+        </If.Then>
+      </If>
+      <If Condition="[String.IsNullOrEmpty(in_taskName)]" DisplayName="in_taskName" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="If_18">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <If.Then>
+          <Throw DisplayName="Check-in_taskName" Exception="[new SystemException(&quot;El argumento in_taskName se encuentra vacío&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_9" />
+        </If.Then>
+      </If>
+      <If Condition="[String.IsNullOrEmpty(in_userName)]" DisplayName="in_userName" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="If_19">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <If.Then>
+          <Throw DisplayName="Check-in_userName" Exception="[new SystemException(&quot;El argumento in_userName se encuentra vacío&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_10" />
+        </If.Then>
+      </If>
+    </Sequence>
+    <Sequence DisplayName="Envío de Notificación" sap:VirtualizedContainerService.HintSize="919,1014" sap2010:WorkflowViewState.IdRef="Sequence_17">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:String" Name="Resultado" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="877,922" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+        <TryCatch.Try>
+          <Sequence sap:VirtualizedContainerService.HintSize="839,695" sap2010:WorkflowViewState.IdRef="Sequence_22">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:SoapClient ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" ContinueOnError="{x:Null}" Password="{x:Null}" ResponseHeaders="{x:Null}" Username="{x:Null}" ContractName="[in_NombreContrato]" DisplayName="SOAP Request" EndPoint="[in_PuntoFinal]" sap:VirtualizedContainerService.HintSize="797,22" sap2010:WorkflowViewState.IdRef="SoapClient_1" Method="[in_Metodo]" Result="[Resultado]" UseWindowsCredentials="False">
+              <ui:SoapClient.Parameters>
+                <InArgument x:TypeArguments="x:String" x:Key="activityInfo">
+                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="&quot;&lt;BizAgiWSParam&gt; &lt;domain&gt;&quot;+in_domain+&quot;&lt;/domain&gt; &lt;userName&gt;&quot;+in_userName+&quot;&lt;/userName&gt; &lt;ActivityData&gt; &lt;radNumber&gt;&quot;+in_radNumber+&quot;&lt;/radNumber&gt; &lt;taskName&gt;&quot;+in_taskName+&quot;&lt;/taskName&gt; &lt;/ActivityData&gt; &lt;Entities&gt; &lt;EPmElementoPEP_OI&gt; &lt;kMInformacionNegocio&gt; &lt;kMRespuestaRobot&gt; &lt;sCodigo&gt;&quot;+in_Codigo+&quot;&lt;/sCodigo&gt;&quot;+&quot;&lt;sTipoSolicitud&gt;&quot;+in_TransactionItem.SpecificContent(&quot;TipoSolicitud&quot;).ToString.ToLower.Trim+&quot;&lt;/sTipoSolicitud&gt;&quot;+&quot;&lt;sNovedad&gt;&quot;+in_TransactionItem.SpecificContent(&quot;Novedad&quot;).ToString.ToLower.Trim+&quot;&lt;/sNovedad&gt;&quot;+&quot;&lt;sElementoPEPOI&gt;&quot;+in_ElementoPEPOI+&quot;&lt;/sElementoPEPOI&gt;&quot; +&quot;&lt;sDescripcion&gt;&quot;+in_Descripcion+&quot;&lt;/sDescripcion&gt;&lt;/kMRespuestaRobot&gt; &lt;/kMInformacionNegocio&gt; &lt;/EPmElementoPEP_OI&gt; &lt;/Entities&gt; &lt;/BizAgiWSParam&gt;&quot;" />
+                </InArgument>
+              </ui:SoapClient.Parameters>
+            </ui:SoapClient>
+            <If Condition="[Regex.IsMatch(Resultado,&quot;.CDATA.&quot;) or Regex.IsMatch(Resultado,&quot;.errorCode.&quot;)]" sap:VirtualizedContainerService.HintSize="797,541" sap2010:WorkflowViewState.IdRef="If_9">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,383" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Boolean">[out_ResultadoBizagi]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[out_Resultado]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">["&lt;BizAgiWSParam&gt; &lt;domain&gt;"+in_domain+"&lt;/domain&gt; &lt;userName&gt;"+in_userName+"&lt;/userName&gt; &lt;ActivityData&gt; &lt;radNumber&gt;"+in_radNumber+"&lt;/radNumber&gt; &lt;taskName&gt;"+in_taskName+"&lt;/taskName&gt; &lt;/ActivityData&gt; &lt;Entities&gt; &lt;EPmElementoPEP_OI&gt; &lt;kMInformacionNegocio&gt; &lt;kMRespuestaRobot&gt; &lt;sCodigo&gt;"+in_Codigo+"&lt;/sCodigo&gt;"+"&lt;sTipoSolicitud&gt;"+in_TransactionItem.SpecificContent("TipoSolicitud").ToString.ToLower.Trim+"&lt;/sTipoSolicitud&gt;"+"&lt;sNovedad&gt;"+in_TransactionItem.SpecificContent("Novedad").ToString.ToLower.Trim+"&lt;/sNovedad&gt;"+"&lt;sElementoPEPOI&gt;"+in_ElementoPEPOI+"&lt;/sElementoPEPOI&gt;" +"&lt;sDescripcion&gt;"+in_Descripcion+"&lt;/sDescripcion&gt;&lt;/kMRespuestaRobot&gt; &lt;/kMInformacionNegocio&gt; &lt;/EPmElementoPEP_OI&gt; &lt;/Entities&gt; &lt;/BizAgiWSParam&gt;"]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Se envío el Notificación a Bizagi&quot;]" />
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,383" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Boolean">[out_ResultadoBizagi]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[out_Resultado]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">["&lt;BizAgiWSParam&gt; &lt;domain&gt;"+in_domain+"&lt;/domain&gt; &lt;userName&gt;"+in_userName+"&lt;/userName&gt; &lt;ActivityData&gt; &lt;radNumber&gt;"+in_radNumber+"&lt;/radNumber&gt; &lt;taskName&gt;"+in_taskName+"&lt;/taskName&gt; &lt;/ActivityData&gt; &lt;Entities&gt; &lt;EPmElementoPEP_OI&gt; &lt;kMInformacionNegocio&gt; &lt;kMRespuestaRobot&gt; &lt;sCodigo&gt;"+in_Codigo+"&lt;/sCodigo&gt;"+"&lt;sTipoSolicitud&gt;"+in_TransactionItem.SpecificContent("TipoSolicitud").ToString.ToLower.Trim+"&lt;/sTipoSolicitud&gt;"+"&lt;sNovedad&gt;"+in_TransactionItem.SpecificContent("Novedad").ToString.ToLower.Trim+"&lt;/sNovedad&gt;"+"&lt;sElementoPEPOI&gt;"+in_ElementoPEPOI+"&lt;/sElementoPEPOI&gt;" +"&lt;sDescripcion&gt;"+in_Descripcion+"&lt;/sDescripcion&gt;&lt;/kMRespuestaRobot&gt; &lt;/kMInformacionNegocio&gt; &lt;/EPmElementoPEP_OI&gt; &lt;/Entities&gt; &lt;/BizAgiWSParam&gt;"]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;No fue posible el envío de la Notificación a Bizagi&quot;]" />
+                </Sequence>
+              </If.Else>
+            </If>
+          </Sequence>
+        </TryCatch.Try>
+        <TryCatch.Catches>
+          <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="843,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ActivityAction x:TypeArguments="s:Exception">
+              <ActivityAction.Argument>
+                <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+              </ActivityAction.Argument>
+              <Sequence sap:VirtualizedContainerService.HintSize="376,383" sap2010:WorkflowViewState.IdRef="Sequence_21">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_5">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Boolean">[out_ResultadoBizagi]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_6">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[out_Resultado]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">["&lt;BizAgiWSParam&gt; &lt;domain&gt;"+in_domain+"&lt;/domain&gt; &lt;userName&gt;"+in_userName+"&lt;/userName&gt; &lt;ActivityData&gt; &lt;radNumber&gt;"+in_radNumber+"&lt;/radNumber&gt; &lt;taskName&gt;"+in_taskName+"&lt;/taskName&gt; &lt;/ActivityData&gt; &lt;Entities&gt; &lt;EPmElementoPEP_OI&gt; &lt;kMInformacionNegocio&gt; &lt;kMRespuestaRobot&gt; &lt;sCodigo&gt;"+in_Codigo+"&lt;/sCodigo&gt;"+"&lt;sTipoSolicitud&gt;"+in_TransactionItem.SpecificContent("TipoSolicitud").ToString.ToLower.Trim+"&lt;/sTipoSolicitud&gt;"+"&lt;sNovedad&gt;"+in_TransactionItem.SpecificContent("Novedad").ToString.ToLower.Trim+"&lt;/sNovedad&gt;"+"&lt;sElementoPEPOI&gt;"+in_ElementoPEPOI+"&lt;/sElementoPEPOI&gt;" +"&lt;sDescripcion&gt;"+in_Descripcion+"&lt;/sDescripcion&gt;&lt;/kMRespuestaRobot&gt; &lt;/kMInformacionNegocio&gt; &lt;/EPmElementoPEP_OI&gt; &lt;/Entities&gt; &lt;/BizAgiWSParam&gt;"]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;No fue posible el envío de la Notificación a Bizagi&quot;]" />
+              </Sequence>
+            </ActivityAction>
+          </Catch>
+        </TryCatch.Catches>
+      </TryCatch>
+    </Sequence>
+    <ui:LogMessage DisplayName="End Args In" sap:VirtualizedContainerService.HintSize="919,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[String.Format(&quot;--&gt;Fin-Flujo : Notificacion_Bizagi out_ResultadoBizagi: '{0}'&quot;,out_ResultadoBizagi)]" />
+  </Sequence>
+</Activity>
